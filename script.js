@@ -27,28 +27,27 @@ document.addEventListener("mouseup", function (e) {
 document.addEventListener("mousemove", function (e) {
   e.preventDefault();
   if (dragging) {
-    console.log("e.clientX ::", e.clientX);
-    console.log("e.clientY ::", e.clientY);
-    console.log("parentRect L R ::", parentRect.left, parentRect.right);
-    console.log("parentRect B T ::", parentRect.bottom, parentRect.top);
-
     if (
-      e.clientX > parentRect.left &&
-      e.clientX + draggableRect.width < parentRect.right &&
-      e.clientY > parentRect.top &&
-      e.clientY + draggableRect.height < parentRect.bottom
+      e.clientX >= 0 &&
+      e.clientX + draggableRect.width <= parentRect.right &&
+      e.clientY >= 0 &&
+      e.clientY + draggableRect.height <= parentRect.bottom
     ) {
       // mouse inside the parent boundaries
       draggable.style.left = `${e.clientX}px`;
       draggable.style.top = `${e.clientY}px`;
     } else {
       //mouse went out of horizontal boudaries
-      if (e.clientX + draggableRect.width > parentRect.right) {
-        draggable.style.left = `${parentRect.right - draggableRect.width}px`;
+      if (e.clientX + draggableRect.width >= parentRect.right) {
+        draggable.style.left = `${
+          parentRect.right - draggableRect.width - parentRect.left
+        }px`;
       }
       //mouse went out of vertical boundaries
-      if (e.clientY + draggableRect.height > parentRect.bottom) {
-        draggable.style.top = `${parentRect.bottom - draggableRect.height}px`;
+      if (e.clientY + draggableRect.height >= parentRect.bottom) {
+        draggable.style.top = `${
+          parentRect.bottom - draggableRect.height - parentRect.top
+        }px`;
       }
     }
   }
