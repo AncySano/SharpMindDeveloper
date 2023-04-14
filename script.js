@@ -15,6 +15,8 @@ document.addEventListener("mousedown", function (e) {
   // prevent the default action
   e.preventDefault();
   //   dragging started
+  parentRect = parent.getBoundingClientRect();
+  draggableRect = draggable.getBoundingClientRect();
   dragging = true;
 });
 //mouse button released
