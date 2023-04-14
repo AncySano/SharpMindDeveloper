@@ -1,0 +1,14 @@
+.parent {
+  width: 80vw;
+  height: 80vh;
+  background: purple;
+  position: relative;
+}
+.child {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  z-index: 1;
+  background: red;
+  cursor: move;
+}
